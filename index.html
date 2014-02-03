@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    #demoCanvas{background-color:#000;}
+    </style>
+    <script src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
+    <script src="lib/spaceship.js"></script>
+    <script src="lib/missile.js"></script>
+    <script src="lib/missileb.js"></script>
+    <script src="lib/vector.js"></script>
+    <script src="lib/enemy.js"></script>
+    <script src="lib/enemys.js"></script>
+    <script src="lib/messages.js"></script>
+    <script src="lib/state.js"></script>
+    <script src="lib/gamestatemachine.js"></script>
+    <script src="lib/menustate.js"></script>
+    <script src="lib/playstate.js"></script>
+    <script src="lib/gameoverstate.js"></script>
+    <script>
+        var gameStateMachine = new Gamestatemachine();
+        var menustate;
+        var playstate;
+        var gameoverstate;
+     
+        function init() {
+
+            createjs.Ticker.addEventListener("tick", function(e) {
+                update();
+            });
+
+            createjs.Ticker.setFPS(60);
+
+            menuState = new Menustate();
+
+            gameStateMachine.changeState(menuState);
+        
+        }
+
+        function update(){ 
+            gameStateMachine.update();
+        }
+
+    </script>
+</head>
+<body onLoad="init();">
+    <canvas id="demoCanvas" width="500" height="300">
+        alternate content
+    </canvas>
+</body>
+</html>
